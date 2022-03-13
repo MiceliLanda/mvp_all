@@ -13,8 +13,7 @@ class _OnBoardingState extends State<OnBoarding> {
     {
       'image': "assets/images/B1.png",
       'text': "ESPARCIMIENTO",
-      'text2':
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+      'text2': "Brindamos todos los servicios para consentir a tu mascota"
     },
     {
       'image': "assets/images/B2.png",
@@ -37,8 +36,7 @@ class _OnBoardingState extends State<OnBoarding> {
     {
       'image': "assets/images/B5.png",
       'text': "TIENDA",
-      'text2':
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+      'text2': "Compra todas las necesidades de tu mascota sin salir de casa"
     },
   ];
 
@@ -112,12 +110,15 @@ class _OnBoardingState extends State<OnBoarding> {
               ? MaterialStateProperty.all<Color>(ColorsView.bgEnabled)
               : MaterialStateProperty.all<Color>(ColorsView.bgDisabled)),
       onPressed: () {},
-      child: Text(
-        'Siguiente',
-        style: index == boardingData.length - 1
-            ? const TextStyle(color: ColorsView.textWhite)
-            : const TextStyle(color: ColorsView.txtheader2),
-      ),
+      child: index == boardingData.length - 1
+          ? const Text(
+              'Continuar',
+              style: TextStyle(color: ColorsView.textWhite, fontSize: 16),
+            )
+          : const Text(
+              'Siguiente',
+              style: TextStyle(color: ColorsView.txtheader2, fontSize: 16),
+            ),
     );
   }
 

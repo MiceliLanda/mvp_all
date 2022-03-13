@@ -1,6 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mvp_all/styles/colors/colors_view.dart';
 import 'dart:ui' as ui;
 
 // Importaciones clase Vistas
@@ -20,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     _loadImage('assets/images/splash.png');
-    _toOnbording();
+    // _toOnbording();
   }
 
   @override
@@ -63,29 +64,56 @@ class _SplashCanvas extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
+    final paintBottom = Paint();
 
-    paint.color = Colors.amber;
+    paintBottom.color = ColorsView.bgEnabled;
+    paintBottom.style = PaintingStyle.fill;
+    paintBottom.strokeWidth = 5;
 
+    paint.color = ColorsView.bgEnabled;
     paint.style = PaintingStyle.fill;
-
     paint.strokeWidth = 5;
 
     final path = Path();
+    final pathBottom = Path();
 
     path.lineTo(0, size.height * 0.10);
-    path.quadraticBezierTo(size.height * 0.10, size.height * 0.25,
-        size.height * 0.32, size.height * 0.10);
-
-    // path.quadraticBezierTo(size.height * 0.25, size.height * 0.20,
-    //     size.height * 0.40, size.height * 0.10);
-
-    // path.quadraticBezierTo(x1, y1, x2, y2)
+    path.quadraticBezierTo(
+      size.width * .20, //izq
+      size.height * .16, //inmedio izq
+      size.width * .35, //inmedio der
+      size.height * .10, //der
+    );
+    path.quadraticBezierTo(
+      size.width * .48, //izq
+      size.height * 0.06, //medio izq
+      size.width * 0.80, // med der
+      size.height * .10, //der
+    );
+    path.quadraticBezierTo(
+      size.width, //izq
+      size.height * .13, //inmedio izq
+      size.height * 0.60, //inmedio der
+      size.width * 0.06, //de);
+    );
     path.lineTo(size.width, 0);
+    // path.moveTo(size.width * 0.94, size.height * 0.11);
+    // path.quadraticBezierTo(
+    //   size.width * .80, //izq
+    //   size.height * .16, //inmedio izq
+    //   size.width * 9.8, //inmedio der
+    //   size.height * 0.10, //de);
+    // );
+
+    pathBottom.moveTo(size.width * 0.05, size.height);
+    pathBottom.quadraticBezierTo(
+        size.width * .70, size.height * .80, size.width * 0.95, size.height);
 
     canvas.drawPath(path, paint);
-    canvas.scale(.25, .22);
+    canvas.drawPath(pathBottom, paintBottom);
 
-    canvas.drawImage(imageCanvas!, const Offset(300 * 1.5, 430 * 3.0), paint);
+    canvas.scale(.25, .22);
+    canvas.drawImage(imageCanvas!, const Offset(300 * 1.5, 435 * 3.0), paint);
   }
 
   @override

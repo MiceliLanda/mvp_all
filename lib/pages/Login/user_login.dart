@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:mvp_all/pages/Home/home.dart';
 import 'package:mvp_all/pages/RecoverPassword/recover.dart';
@@ -65,56 +63,13 @@ class Login extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: const Text(
-                    'Correo Electrónico',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Hack',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87),
-                  )),
-              const TextField(
-                style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 15,
-                    fontFamily: 'Hack'),
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  hintText: 'Email Address',
-                ),
-              ),
+              containerText(name: 'Correo Electrónico'),
+              _textField(field: 'Email Address'),
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: const Text(
-                    'Contraseña',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Hack',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )),
-              const TextField(
-                style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 15,
-                    fontFamily: 'Hack'),
-                obscureText: true,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  hintText: 'Password',
-                ),
-              ),
+              containerText(name: 'Contraseña'),
+              _textField(field: 'Password'),
               Container(
                 alignment: Alignment.centerRight,
                 margin: const EdgeInsets.only(top: 10),
@@ -196,5 +151,35 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  TextField _textField({required String field}) {
+    return TextField(
+      style: _textStyle(bold: false),
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        hintText: 'Email Address',
+      ),
+    );
+  }
+
+  TextStyle _textStyle({required bool bold}) {
+    return TextStyle(
+      fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
+      fontSize: 15,
+      fontFamily: 'Hack',
+    );
+  }
+
+  Container containerText({required String name}) {
+    return Container(
+        alignment: Alignment.centerLeft,
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Text(
+          name,
+          style: _textStyle(bold: true),
+        ));
   }
 }

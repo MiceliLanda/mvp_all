@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
-        overlays: [SystemUiOverlay.top]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+    //     overlays: [SystemUiOverlay.top]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'MVP_ALL',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

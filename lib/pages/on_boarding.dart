@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_all/pages/Home/home.dart';
 import 'package:mvp_all/styles/colors/colors_view.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -41,6 +42,7 @@ class _OnBoardingState extends State<OnBoarding> {
   ];
 
   int page = 0;
+  final PageController _pControler = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -55,19 +57,7 @@ class _OnBoardingState extends State<OnBoarding> {
               children: [
                 Expanded(
                   flex: 3,
-                  child: PageView.builder(
-                    onPageChanged: (value) {
-                      setState(() {
-                        page = value;
-                      });
-                    },
-                    itemCount: boardingData.length,
-                    itemBuilder: (context, index) => ContainerBoarding(
-                      image: boardingData[index]['image']!,
-                      textHeader: boardingData[index]['text']!,
-                      textSecondary: boardingData[index]['text2']!,
-                    ),
-                  ),
+                  child: _pageChanged(),
                 ),
                 Expanded(
                   flex: 1,
@@ -98,6 +88,23 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 
+  PageView _pageChanged() {
+    return PageView.builder(
+      controller: _pControler,
+      onPageChanged: (value) {
+        setState(() {
+          page = value;
+        });
+      },
+      itemCount: boardingData.length,
+      itemBuilder: (context, index) => ContainerBoarding(
+        image: boardingData[index]['image']!,
+        textHeader: boardingData[index]['text']!,
+        textSecondary: boardingData[index]['text2']!,
+      ),
+    );
+  }
+
   ElevatedButton _elevatedButton({required int index}) {
     // print('index de elevated $index');
     return ElevatedButton(
@@ -109,7 +116,16 @@ class _OnBoardingState extends State<OnBoarding> {
           backgroundColor: index == boardingData.length - 1
               ? MaterialStateProperty.all<Color>(ColorsView.bgEnabled)
               : MaterialStateProperty.all<Color>(ColorsView.bgDisabled)),
-      onPressed: () {},
+      onPressed: () => {
+        _pControler.nextPage(
+            duration: const Duration(milliseconds: 1500),
+            curve: Curves.easeInOutQuint),
+        if (boardingData.length - 1 == index)
+          {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => const Home()))
+          },
+      },
       child: index == boardingData.length - 1
           ? const Text(
               'Continuar',

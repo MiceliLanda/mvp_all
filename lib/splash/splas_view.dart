@@ -21,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     _loadImage('assets/images/splash.png');
-    // _toOnbording();
+    _toOnbording();
   }
 
   @override
@@ -97,13 +97,6 @@ class _SplashCanvas extends CustomPainter {
       size.width * 0.06, //de);
     );
     path.lineTo(size.width, 0);
-    // path.moveTo(size.width * 0.94, size.height * 0.11);
-    // path.quadraticBezierTo(
-    //   size.width * .80, //izq
-    //   size.height * .16, //inmedio izq
-    //   size.width * 9.8, //inmedio der
-    //   size.height * 0.10, //de);
-    // );
 
     pathBottom.moveTo(size.width * 0.05, size.height);
     pathBottom.quadraticBezierTo(

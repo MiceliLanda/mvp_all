@@ -64,12 +64,13 @@ class Login extends StatelessWidget {
                 height: 50,
               ),
               containerText(name: 'Correo Electrónico'),
-              _textField(field: 'Email Address'),
+              _textField(
+                  field: 'Email Address', hide: false, isPassword: false),
               const SizedBox(
                 height: 30,
               ),
               containerText(name: 'Contraseña'),
-              _textField(field: 'Password'),
+              _textField(field: 'Password', hide: true, isPassword: true),
               Container(
                 alignment: Alignment.centerRight,
                 margin: const EdgeInsets.only(top: 10),
@@ -101,7 +102,7 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 60,
+              height: 50,
               width: 340,
               child: ElevatedButton(
                 style: ButtonStyle(
@@ -153,15 +154,21 @@ class Login extends StatelessWidget {
     );
   }
 
-  TextField _textField({required String field}) {
+  TextField _textField(
+      {required String field, required bool hide, required bool isPassword}) {
     return TextField(
+      obscureText: hide == true ? true : false,
       style: _textStyle(bold: false),
       keyboardType: TextInputType.emailAddress,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
-        hintText: 'Email Address',
-      ),
+      decoration: InputDecoration(
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15))),
+          hintText: field,
+          suffixIcon: isPassword == true
+              ? const Icon(
+                  Icons.visibility,
+                )
+              : null),
     );
   }
 

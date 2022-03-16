@@ -51,30 +51,32 @@ class Login extends StatelessWidget {
                 const EdgeInsets.only(top: 35, left: 25, right: 25, bottom: 50),
             width: double.infinity,
             // color: ColorsView.bgEnabled,
-            child: Column(textDirection: TextDirection.ltr, children: [
-              const Text(
-                'Inicia sesión con tu cuenta para continuar',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Hack',
-                    fontWeight: FontWeight.bold,
-                    color: ColorsView.txtheader2),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              containerText(name: 'Correo Electrónico'),
-              _textField(
-                  field: 'Email Address', hide: false, isPassword: false),
-              const SizedBox(
-                height: 30,
-              ),
-              containerText(name: 'Contraseña'),
-              _textField(field: 'Password', hide: true, isPassword: true),
-              Container(
-                alignment: Alignment.centerRight,
-                margin: const EdgeInsets.only(top: 10),
-                child: InkWell(
+            child: Column(
+              textDirection: TextDirection.ltr,
+              children: [
+                const Text(
+                  'Inicia sesión con tu cuenta para continuar',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Hack',
+                      fontWeight: FontWeight.bold,
+                      color: ColorsView.txtheader2),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                containerText(name: 'Correo Electrónico'),
+                _textField(
+                    field: 'Email Address', hide: false, isPassword: false),
+                const SizedBox(
+                  height: 30,
+                ),
+                containerText(name: 'Contraseña'),
+                _textField(field: 'Password', hide: true, isPassword: true),
+                Container(
+                  alignment: Alignment.centerRight,
+                  margin: const EdgeInsets.only(top: 10),
+                  child: InkWell(
                     child: const Text('¿Has olvidado tu contraseña?',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -82,22 +84,23 @@ class Login extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: ColorsView.barused)),
                     onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Recover(),
-                            ),
-                          )
-                        }),
-              )
-            ]),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Recover(),
+                        ),
+                      )
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
       bottomNavigationBar: Container(
         height: 150,
         margin: const EdgeInsets.only(left: 25, right: 25),
-        // color: ColorsView.barused,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -133,18 +136,19 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                      child: const Text('Regístrate',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(252, 20, 96, 1))),
-                      onTap: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Register()))
-                          })
+                    child: const Text('Regístrate',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(252, 20, 96, 1))),
+                    onTap: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Register()))
+                    },
+                  )
                 ],
               ),
             ),
@@ -157,18 +161,20 @@ class Login extends StatelessWidget {
   TextField _textField(
       {required String field, required bool hide, required bool isPassword}) {
     return TextField(
-      obscureText: hide == true ? true : false,
+      obscureText: hide,
       style: _textStyle(bold: false),
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15))),
-          hintText: field,
-          suffixIcon: isPassword == true
-              ? const Icon(
-                  Icons.visibility,
-                )
-              : null),
+        border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        hintText: field,
+        suffixIcon: isPassword
+            ? InkWell(
+                child: const Icon(Icons.visibility),
+                onTap: () => {Icons.visibility_off},
+              )
+            : null,
+      ),
     );
   }
 
@@ -182,11 +188,12 @@ class Login extends StatelessWidget {
 
   Container containerText({required String name}) {
     return Container(
-        alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(bottom: 10),
-        child: Text(
-          name,
-          style: _textStyle(bold: true),
-        ));
+      alignment: Alignment.centerLeft,
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Text(
+        name,
+        style: _textStyle(bold: true),
+      ),
+    );
   }
 }

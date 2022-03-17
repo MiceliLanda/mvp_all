@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_all/pages/Login/user_login.dart';
 
@@ -166,9 +167,10 @@ class _RegisterState extends State<Register> {
     return SizedBox(
       height: 40,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
+          Expanded(
+            flex: 1,
             child: GestureDetector(
               onTap: () {
                 setState(() {
@@ -188,47 +190,41 @@ class _RegisterState extends State<Register> {
                     ),
             ),
           ),
-          Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Al registrarme acepto los ',
-                      style: _textStyle(bold: false, link: false),
-                    ),
-                    InkWell(
-                      child: Text(
-                        'términos y ',
-                        style: _textStyle(bold: false, link: true),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
+          Expanded(
+            flex: 5,
+            child: RichText(
+              text: TextSpan(
                 children: [
-                  InkWell(
-                    child: Text(
-                      'condiciones ',
-                      style: _textStyle(bold: false, link: true),
-                    ),
-                  ),
-                  Text(
-                    'y la ',
+                  TextSpan(
+                    text: 'Al registrarme, acepto los ',
                     style: _textStyle(bold: false, link: false),
                   ),
-                  InkWell(
-                    child: Text(
-                      'política de privacidad.',
-                      style: _textStyle(bold: false, link: true),
-                    ),
+                  TextSpan(
+                    text: 'términos y condiciones',
+                    style: _textStyle(bold: false, link: true),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Home(),
+                            ),
+                          ),
+                  ),
+                  TextSpan(
+                    text: ' y la',
+                    style: _textStyle(bold: false, link: false),
+                  ),
+                  TextSpan(
+                    text: ' política de privacidad.',
+                    style: _textStyle(bold: false, link: true),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Long Pressed.
+                      },
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ],
       ),

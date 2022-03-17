@@ -4,9 +4,15 @@ import 'package:mvp_all/pages/RecoverPassword/recover.dart';
 import 'package:mvp_all/pages/Register/register.dart';
 import 'package:mvp_all/styles/colors/colors_view.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool _isHide = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +42,6 @@ class Login extends StatelessWidget {
                 'assets/images/splash.png',
                 color: ColorsView.textWhite,
                 fit: BoxFit.fill,
-                // height: 100,
-                // width: 40,
               ),
             ),
           ],
@@ -57,7 +61,7 @@ class Login extends StatelessWidget {
                 const Text(
                   'Inicia sesión con tu cuenta para continuar',
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontFamily: 'Hack',
                       fontWeight: FontWeight.bold,
                       color: ColorsView.txtheader2),
@@ -66,13 +70,12 @@ class Login extends StatelessWidget {
                   height: 50,
                 ),
                 containerText(name: 'Correo Electrónico'),
-                _textField(
-                    field: 'Email Address', hide: false, isPassword: false),
+                _textField(field: 'Email Address'),
                 const SizedBox(
                   height: 30,
                 ),
                 containerText(name: 'Contraseña'),
-                _textField(field: 'Password', hide: true, isPassword: true),
+                _textFieldPassword(field: 'Password'),
                 Container(
                   alignment: Alignment.centerRight,
                   margin: const EdgeInsets.only(top: 10),
@@ -99,7 +102,7 @@ class Login extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 150,
+        height: 130,
         margin: const EdgeInsets.only(left: 25, right: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -158,22 +161,35 @@ class Login extends StatelessWidget {
     );
   }
 
-  TextField _textField(
-      {required String field, required bool hide, required bool isPassword}) {
+  TextField _textField({required String field}) {
     return TextField(
-      obscureText: hide,
       style: _textStyle(bold: false),
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
         hintText: field,
-        suffixIcon: isPassword
-            ? InkWell(
-                child: const Icon(Icons.visibility),
-                onTap: () => {Icons.visibility_off},
-              )
-            : null,
+      ),
+    );
+  }
+
+  TextField _textFieldPassword({required String field}) {
+    return TextField(
+      obscureText: _isHide,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        suffixIcon: IconButton(
+          icon: Icon(_isHide ? Icons.visibility : Icons.visibility_off),
+          onPressed: () {
+            setState(
+              () {
+                _isHide = !_isHide;
+              },
+            );
+          },
+        ),
       ),
     );
   }

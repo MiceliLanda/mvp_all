@@ -9,6 +9,7 @@ class Recover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: ColorsView.txtheader,
         elevation: 0,
@@ -42,6 +43,65 @@ class Recover extends StatelessWidget {
           ],
         ),
       ),
+      body: Container(
+        margin: const EdgeInsets.all(25.0),
+        height: 40,
+        color: Colors.white,
+        child: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                  child: const Icon(
+                    Icons.radio_button_checked,
+                    color: Colors.blue,
+                    size: 20,
+                  ),
+                  onTap: () {}),
+            ),
+            Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Al registrarme acepto los ',
+                        style: stylesText(click: false),
+                      ),
+                      Text(
+                        'términos y ',
+                        style: stylesText(click: true),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'condiciones',
+                      style: stylesText(click: true),
+                    ),
+                    Text(
+                      'y la ',
+                      style: stylesText(click: false),
+                    ),
+                    Text(
+                      'política de privacidad.',
+                      style: stylesText(click: true),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
+
+  TextStyle stylesText({required bool click}) => TextStyle(
+        color: click ? ColorsView.barused : Colors.black,
+        fontSize: 15,
+      );
 }

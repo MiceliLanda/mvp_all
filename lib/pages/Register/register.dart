@@ -202,13 +202,13 @@ class _RegisterState extends State<Register> {
                   TextSpan(
                     text: 'términos y condiciones',
                     style: _textStyle(bold: false, link: true),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Home(),
-                            ),
-                          ),
+                    // recognizer: TapGestureRecognizer()
+                    //   ..onTap = () => Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) => const Home(),
+                    //         ),
+                    //       ),
                   ),
                   TextSpan(
                     text: ' y la',
@@ -217,10 +217,10 @@ class _RegisterState extends State<Register> {
                   TextSpan(
                     text: ' política de privacidad.',
                     style: _textStyle(bold: false, link: true),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        // Long Pressed.
-                      },
+                    // recognizer: TapGestureRecognizer()
+                    //   ..onTap = () {
+                    //     // Long Pressed.
+                    //   },
                   ),
                 ],
               ),

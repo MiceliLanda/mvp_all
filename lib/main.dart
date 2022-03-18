@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mvp_all/canvas/progress_view.dart';
 import 'package:mvp_all/splash/splas_view.dart';
 
 void main() {
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashView(),
+      // home: const SplashView(),
+      home: const ProgressView(),
     );
   }
 }

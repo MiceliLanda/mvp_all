@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles/colors/colors_view.dart';
@@ -14,7 +11,6 @@ class Recover extends StatefulWidget {
 }
 
 class _RecoverState extends State<Recover> {
-  bool _checked = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
